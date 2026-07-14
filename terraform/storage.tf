@@ -20,3 +20,11 @@ resource "google_storage_bucket" "static-site" {
     retention_duration_seconds = 0
   }
 }
+
+resource "google_storage_bucket_object" "demo_object" {
+  name       = "demo-object"
+  bucket     = google_storage_bucket.static-site.name
+  content    = module.api.url
+  depends_on = [module.api]
+
+}

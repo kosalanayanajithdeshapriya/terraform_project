@@ -27,3 +27,9 @@ provider "docker" {
     password = data.google_client_config.default.access_token
   }
 }
+
+module "api" {
+  source         = "./modules/api"
+  region         = var.region
+  repository_url = "${google_artifact_registry_repository.registry.location}-docker.pkg.dev/${google_artifact_registry_repository.registry.project}/${google_artifact_registry_repository.registry.repository_id}"
+}
