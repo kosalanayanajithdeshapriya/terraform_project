@@ -38,3 +38,18 @@ module "api" {
   region         = var.region
   repository_url = "${google_artifact_registry_repository.registry.location}-docker.pkg.dev/${google_artifact_registry_repository.registry.project}/${google_artifact_registry_repository.registry.repository_id}"
 }
+
+moved {
+  from = docker_image.terraform_demo
+  to   = module.api.docker_image.terraform_demo
+}
+
+moved {
+  from = docker_registry_image.demo_image
+  to   = module.api.docker_registry_image.demo_image
+}
+
+moved {
+  from = google_cloud_run_v2_service.default
+  to   = module.api.google_cloud_run_v2_service.default
+}

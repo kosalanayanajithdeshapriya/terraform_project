@@ -24,8 +24,9 @@ resource "docker_registry_image" "demo_image" {
 }
 
 resource "google_cloud_run_v2_service" "default" {
-  name     = "tf-cloudrun-demo"
-  location = var.region
+  name                = "tf-cloudrun-demo"
+  location            = var.region
+  deletion_protection = false
 
   template {
     containers {
@@ -41,3 +42,4 @@ resource "google_cloud_run_v2_service_iam_member" "public_access" {
   role     = "roles/run.invoker"
   member   = "allUsers"
 }
+
