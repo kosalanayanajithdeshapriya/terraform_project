@@ -7,7 +7,7 @@ on:
       - ".github/workflows/terraform.yml"
   push:
     branches:
-      - main
+      - chore/ci-remote-state-and-hygiene
     paths:
       - "terraform/**"
       - ".github/workflows/terraform.yml"
@@ -100,7 +100,7 @@ jobs:
 
   apply:
     name: Apply
-    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    if: github.event_name == 'push' && github.ref == 'refs/heads/chore/ci-remote-state-and-hygiene'
     needs: fmt-validate
     runs-on: ubuntu-latest
     environment: production
