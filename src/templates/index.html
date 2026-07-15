@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>tf-demo</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+  <link rel="icon" href="data:,">
+</head>
+<body>
+  <div class="shell">
+    <header class="top">
+      <div class="mark">
+        <span class="mark-glyph" aria-hidden="true">▣</span>
+        <span class="mark-text">tf-demo</span>
+      </div>
+      <div id="live-pill" class="pill pill-pending">
+        <span class="dot" aria-hidden="true"></span>
+        <span id="live-label">checking&hellip;</span>
+      </div>
+    </header>
+
+    <main>
+      <section class="hero">
+        <p class="eyebrow">Terraform &middot; Artifact Registry &middot; Cloud Run</p>
+        <h1>Hello, World.<br>This is running on Cloud&nbsp;Run.</h1>
+        <p class="lede">
+          A minimal Flask service, built into a container by Terraform, pushed to Artifact
+          Registry, and deployed here by a GitHub Actions pipeline. No servers were provisioned
+          by hand.
+        </p>
+      </section>
+
+      <section class="panel">
+        <h2>Deployment</h2>
+        <dl class="facts">
+          <div class="fact">
+            <dt>Service</dt>
+            <dd id="fact-service">{{ info.service }}</dd>
+          </div>
+          <div class="fact">
+            <dt>Revision</dt>
+            <dd id="fact-revision">{{ info.revision }}</dd>
+          </div>
+          <div class="fact">
+            <dt>Configuration</dt>
+            <dd id="fact-configuration">{{ info.configuration }}</dd>
+          </div>
+          <div class="fact">
+            <dt>Region</dt>
+            <dd id="fact-region">{{ info.region }}</dd>
+          </div>
+          <div class="fact">
+            <dt>Python</dt>
+            <dd id="fact-python">{{ info.python_version }}</dd>
+          </div>
+          <div class="fact">
+            <dt>Container started</dt>
+            <dd id="fact-started">{{ info.started_at }}</dd>
+          </div>
+        </dl>
+      </section>
+
+      <section class="panel">
+        <h2>Endpoints</h2>
+        <ul class="endpoints">
+          <li>
+            <span class="method">GET</span>
+            <code>/</code>
+            <span class="desc">This page</span>
+          </li>
+          <li>
+            <span class="method">GET</span>
+            <code>/status</code>
+            <span class="desc">Health check — <code>{"status": "running"}</code></span>
+          </li>
+          <li>
+            <span class="method">GET</span>
+            <code>/api/info</code>
+            <span class="desc">Deployment metadata as JSON</span>
+          </li>
+        </ul>
+      </section>
+    </main>
+
+    <footer>
+      <span>Deployed via Terraform + GitHub Actions</span>
+      <span id="footer-clock" class="mono"></span>
+    </footer>
+  </div>
+
+  <script src="{{ url_for('static', filename='js/app.js') }}"></script>
+</body>
+</html>
