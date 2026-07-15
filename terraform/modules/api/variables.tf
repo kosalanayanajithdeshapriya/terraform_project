@@ -9,3 +9,9 @@ variable "repository_url" {
   type        = string
 }
 
+variable "access_token" {
+  description = "OAuth2 access token used to authenticate docker pushes to the Artifact Registry repository"
+  type        = string
+  sensitive   = true
+}
+
