@@ -9,6 +9,11 @@ terraform {
       version = "~> 3.0"
     }
   }
+
+  backend "gcs" {
+    bucket = "devops-501908-tfstate"
+    prefix = "terraform/state"
+  }
 }
 
 provider "google" {
